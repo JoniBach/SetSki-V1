@@ -82,7 +82,7 @@ export default function MainView() {
                     <TableHead>
                         {
                             styleList.map((d,i) => (
-                                <FormRow  label={d.title} info={d.year} edit={false} />
+                                <FormRow  label={d.title} details={d.details} edit={false} />
                             ))
                         }
                     </TableHead>

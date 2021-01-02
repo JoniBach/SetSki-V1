@@ -29,7 +29,7 @@ export default function FormTable(props) {
   const [optionsOpen, setOptionsOpen] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
   const [styleList, setStyleList] = useContext(StyleContext);
-  const [prvLabel, setPrvLabel] = useState(props.label);
+  const [newDetails, setnewDetails] = useState(props.details);
   const handleLocalStorage = (message) => {
     localStorage.setItem("message", message);
     // sets the value of "message" in localStorage to be "saved in browser storage"
@@ -57,7 +57,7 @@ export default function FormTable(props) {
     const oldRecord = await getRecord(newValue);
     const newRecord = {
       ...oldRecord,
-      title: prvLabel,
+      details: newDetails,
     };
     const filteredList = styleList.filter(
       (record) => record.title !== newValue
@@ -77,9 +77,9 @@ export default function FormTable(props) {
       <TableRow key={props.label}>
         <TableCell>
           <TextField
-            value={prvLabel}
+            value={newDetails}
             onChange={(e) => {
-              setPrvLabel(e.target.value);
+              setnewDetails(e.target.value);
             }}
           />
         </TableCell>
@@ -98,7 +98,7 @@ export default function FormTable(props) {
               <IconButton
                 onClick={() => {
                   setEdit(false);
-                  setPrvLabel(props.label);
+                  setnewDetails(props.label);
                 }}
               >
                 <CancelIcon />
@@ -121,7 +121,7 @@ export default function FormTable(props) {
       <TableRow key={props.label}>
         <TableCell>{props.label}</TableCell>
         <TableCell align="right">
-          {props.info}
+          {props.details}
           {props.content}
         </TableCell>
         {optionsOpen ? (
