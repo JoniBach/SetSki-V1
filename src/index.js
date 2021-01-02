@@ -3,18 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { theme } from "./theme";
-import { ThemeProvider } from "@material-ui/styles";
 import { StyleProvider } from "./components/SetSki/StyleContext";
 
+
+
+
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <StyleProvider>
+  <StyleProvider >
+
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </StyleProvider>
-  </ThemeProvider>,
+      </StyleProvider>
+      
+      ,
 
   document.getElementById("root")
 );
