@@ -92,7 +92,7 @@ export default function FormTable(props) {
               <IconButton
                 onClick={() => {
                   setOptionsOpen(false);
-                  handleEditRecord(props.label);
+                  handleEditRecord(props.details);
                   setEdit(false);
                   setnewDetails(props.details);
 
