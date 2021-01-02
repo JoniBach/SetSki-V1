@@ -5,12 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { theme } from "./theme";
 import { ThemeProvider } from "@material-ui/styles";
+import { StyleProvider } from "./components/SetSki/StyleContext";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <StyleProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </StyleProvider>
   </ThemeProvider>,
 
   document.getElementById("root")
