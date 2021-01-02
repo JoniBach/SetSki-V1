@@ -40,9 +40,6 @@ export default function CustomizedInputBase() {
   const [fields, setFields] = useState([]);
   const [value, setValue] = React.useState(null);
   const [styleList, setStyleList] = useContext(StyleContext);
-  console.log(value);
-  console.log(fields);
-
 
   const handleAddValue = async (newValue) => {
     await setValue(newValue);

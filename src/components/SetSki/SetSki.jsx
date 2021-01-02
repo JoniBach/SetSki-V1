@@ -78,6 +78,7 @@ export default function MainView() {
                 <FeatureSearch />
                 <TableContainer component={Paper}>
                   <Table aria-label="simple table">
+
                     <TableHead>
                         {
                             styleList.map((d,i) => (

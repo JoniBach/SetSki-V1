@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -14,7 +14,8 @@ import OptionsIcon from "@material-ui/icons/MoreVert";
 import CancelIcon from "@material-ui/icons/Cancel";
 import AddIcon from "@material-ui/icons/Add";
 import { StyleContext } from "./StyleContext";
-
+import { TextField } from "@material-ui/core";
+import ApproveIcon from "@material-ui/icons/CheckCircle";
 const useStyles = makeStyles({
   buttons: {
     width: 0,
@@ -23,11 +24,12 @@ const useStyles = makeStyles({
   },
 });
 
-const DisplayTable = (props) => {
+export default function FormTable(props) {
   const classes = useStyles();
   const [optionsOpen, setOptionsOpen] = React.useState(false);
+  const [edit, setEdit] = React.useState(false);
   const [styleList, setStyleList] = useContext(StyleContext);
-
+  const [prvLabel, setPrvLabel] = useState(props.label);
   const handleLocalStorage = (message) => {
     localStorage.setItem("message", message);
     // sets the value of "message" in localStorage to be "saved in browser storage"
@@ -35,64 +37,117 @@ const DisplayTable = (props) => {
     console.log(localStorage.getItem("message"));
     // returns "saved in browser storage"
   };
-
+  const getRecord = (newValue) => {
+    const filteredList = styleList.filter(
+      (record) => record.title === newValue
+    );
+    return filteredList[0];
+  };
   const handleRemoveValue = async (newValue) => {
-    console.log(newValue);
     const filteredList = styleList.filter(
       (record) => record.title !== newValue
     );
     await setStyleList(() => {
       return [...filteredList];
     });
-    await setOptionsOpen(false)
-    
+    await setOptionsOpen(false);
   };
 
-  return (
-    <TableRow key={props.label}>
-      <TableCell>{props.label}</TableCell>
-      <TableCell align="right">
-        {props.info}
-        {props.content}
-      </TableCell>
-      {optionsOpen ? (
-        <>
-          <TableCell align="right">
-            <IconButton
-              onClick={() => console.log(localStorage.getItem("message"))}
-            >
-              <CreateIcon />
-            </IconButton>
-            <IconButton onClick={() => handleRemoveValue(props.label)}>
-              <DeleteIcon />
-            </IconButton>
-            <IconButton onClick={() => setOptionsOpen(false)}>
-              <CancelIcon />
-            </IconButton>
-          </TableCell>
-        </>
-      ) : (
-        <>
-          <TableCell align="right">
-            <IconButton onClick={() => setOptionsOpen(true)}>
-              <OptionsIcon />
-            </IconButton>
-          </TableCell>
-        </>
-      )}
-    </TableRow>
-  );
-};
+  const handleEditRecord = async (newValue) => {
+    const oldRecord = await getRecord(newValue);
+    const newRecord = {
+      ...oldRecord,
+      title: prvLabel,
+    };
+    const filteredList = styleList.filter(
+      (record) => record.title !== newValue
+    );
+    await setStyleList(() => {
+      return [...filteredList];
+    });
+    await setOptionsOpen(false);
+    await setStyleList(() => {
+      return [newRecord, ...filteredList];
+    });
+    await setEdit(false);
+  };
 
-const EditTable = () => {
-  return <div></div>;
-};
-
-export default function FormTable(props) {
-  const classes = useStyles();
-  if (props.edit) {
-    return <EditTable />;
+  if (edit) {
+    return (
+      <TableRow key={props.label}>
+        <TableCell>
+          <TextField
+            value={prvLabel}
+            onChange={(e) => {
+              setPrvLabel(e.target.value);
+            }}
+          />
+        </TableCell>
+        {optionsOpen ? (
+          <>
+            <TableCell align="right">
+              <IconButton
+                onClick={() => {
+                  setOptionsOpen(false);
+                  handleEditRecord(props.label);
+                  setEdit(false);
+                }}
+              >
+                <ApproveIcon />
+              </IconButton>
+              <IconButton
+                onClick={() => {
+                  setEdit(false);
+                  setPrvLabel(props.label);
+                }}
+              >
+                <CancelIcon />
+              </IconButton>
+            </TableCell>
+          </>
+        ) : (
+          <>
+            <TableCell align="right">
+              <IconButton onClick={() => setOptionsOpen(true)}>
+                <OptionsIcon />
+              </IconButton>
+            </TableCell>
+          </>
+        )}
+      </TableRow>
+    );
   } else {
-    return <DisplayTable {...props} />;
+    return (
+      <TableRow key={props.label}>
+        <TableCell>{props.label}</TableCell>
+        <TableCell align="right">
+          {props.info}
+          {props.content}
+        </TableCell>
+        {optionsOpen ? (
+          <>
+            <TableCell align="right">
+              <IconButton onClick={() => setEdit(true)}>
+                <CreateIcon />
+              </IconButton>
+              <IconButton onClick={() => handleRemoveValue(props.label)}>
+                <DeleteIcon />
+              </IconButton>
+              <IconButton onClick={() => setOptionsOpen(false)}>
+                <CancelIcon />
+              </IconButton>
+            </TableCell>
+          </>
+        ) : (
+          <>
+            <TableCell align="right">
+              <IconButton onClick={() => setOptionsOpen(true)}>
+                <OptionsIcon />
+              </IconButton>
+            </TableCell>
+          </>
+        )}
+      </TableRow>
+    );
   }
 }
