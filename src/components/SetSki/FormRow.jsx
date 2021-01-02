@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -30,6 +30,10 @@ export default function FormTable(props) {
   const [edit, setEdit] = React.useState(false);
   const [styleList, setStyleList] = useContext(StyleContext);
   const [newDetails, setnewDetails] = useState(props.details);
+  useEffect(() => {
+    setnewDetails(props.details)
+    
+  }, [])
   const handleLocalStorage = (message) => {
     localStorage.setItem("message", message);
     // sets the value of "message" in localStorage to be "saved in browser storage"
@@ -48,7 +52,6 @@ export default function FormTable(props) {
       (record) => record.title !== newValue
     );
     await setStyleList(() => {
-      return [...filteredList];
     });
     await setOptionsOpen(false);
   };
@@ -89,8 +92,10 @@ export default function FormTable(props) {
               <IconButton
                 onClick={() => {
                   setOptionsOpen(false);
-                  handleEditRecord(props.label);
+                  handleEditRecord(props.details);
                   setEdit(false);
+                  setnewDetails(props.details);
+
                 }}
               >
                 <ApproveIcon />
@@ -98,7 +103,7 @@ export default function FormTable(props) {
               <IconButton
                 onClick={() => {
                   setEdit(false);
-                  setnewDetails(props.label);
+                  setnewDetails(props.details);
                 }}
               >
                 <CancelIcon />
@@ -127,7 +132,11 @@ export default function FormTable(props) {
         {optionsOpen ? (
           <>
             <TableCell align="right">
-              <IconButton onClick={() => setEdit(true)}>
+              <IconButton onClick={() => {
+                  setnewDetails(props.details);
+                  setEdit(true)
+                }
+            }>
                 <CreateIcon />
               </IconButton>
               <IconButton onClick={() => handleRemoveValue(props.label)}>
