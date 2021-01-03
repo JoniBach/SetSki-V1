@@ -31,13 +31,13 @@ const useStyles = makeStyles({
 
 const Stuff = [
   {
-    title: "blah",
-    heading: "Hi",
-    subHeading: "A greeting",
+    title: "SetSki color changer",
+    heading: "Sample text:",
+    subHeading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum facilisis leo vel. ",
   },
 ];
 
-export default function MainView() {
+export default function SetSki(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [styleList, setStyleList] = React.useContext(StyleContext);
@@ -54,7 +54,7 @@ export default function MainView() {
     <div>
       <IconButton
         onClick={handleOpen}
-        color="primary"
+        color={props.color}
         aria-label="upload picture"
         component="span"
       >
@@ -67,7 +67,7 @@ export default function MainView() {
         aria-describedby="simple-modal-description"
       >
         <Paper className={classes.modal}>
-          <Group color="pink">
+          <Group color="primary.main" border={5} borderColor="secondary.main">
             {Stuff.map((d, i) => (
               <Card
                 title={d.title}

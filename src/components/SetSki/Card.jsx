@@ -37,7 +37,7 @@ export default function SimpleCard(props) {
         <Typography variant="h5" component="h2">
           {props.heading}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        <Typography className={classes.pos} color="textSecondary" variant="body1">
         {props.subHeading}
         </Typography>
         <Typography variant="body2" component="p">
