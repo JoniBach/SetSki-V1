@@ -19,7 +19,27 @@ function App() {
       },
       type: GetStyle("Theme").details,
     },
+    typography: {
+      // fontFamily: GetStyle("Font Type").details,
+      fontFamily: [
+        GetStyle("Font Type").details,
+        'Roboto',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+      fontSize: GetStyle("Font Size").details,
+
+    },
   });
+
+  console.log(theme);
 
   return (
     <div>
