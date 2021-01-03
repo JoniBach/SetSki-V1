@@ -2,8 +2,8 @@
 export const StyleList = [
     { title: "Primary Color", type: 'color', details: '#51ab1a' },
     { title: "Secondary Color", type: 'color', details: '#800080' },
-    { title: "Background Default Color", type: 'color', details: '#303030' },
-    { title: "Background Paper Color", type: 'color', details: '#424242' },
+    // { title: "Background Default Color", type: 'color', details: '#303030' },
+    // { title: "Background Paper Color", type: 'color', details: '#424242' },
     { title: "Theme", type: 'theme', details: 'dark' },
     { title: "Font Family", type: 'font', details: 'Roboto' },
     { title: "Font Weight Bold", type: 'font', details: 700 },
