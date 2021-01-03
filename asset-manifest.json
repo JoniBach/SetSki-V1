@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/SetSki-V1/static/css/main.ab7136cd.chunk.css",
+    "main.js": "/SetSki-V1/static/js/main.51e1e88c.chunk.js",
+    "main.js.map": "/SetSki-V1/static/js/main.51e1e88c.chunk.js.map",
+    "runtime-main.js": "/SetSki-V1/static/js/runtime-main.960c4815.js",
+    "runtime-main.js.map": "/SetSki-V1/static/js/runtime-main.960c4815.js.map",
+    "static/js/2.a751bd35.chunk.js": "/SetSki-V1/static/js/2.a751bd35.chunk.js",
+    "static/js/2.a751bd35.chunk.js.map": "/SetSki-V1/static/js/2.a751bd35.chunk.js.map",
+    "static/js/3.2aa2da57.chunk.js": "/SetSki-V1/static/js/3.2aa2da57.chunk.js",
+    "static/js/3.2aa2da57.chunk.js.map": "/SetSki-V1/static/js/3.2aa2da57.chunk.js.map",
+    "index.html": "/SetSki-V1/index.html",
+    "static/css/main.ab7136cd.chunk.css.map": "/SetSki-V1/static/css/main.ab7136cd.chunk.css.map",
+    "static/js/2.a751bd35.chunk.js.LICENSE.txt": "/SetSki-V1/static/js/2.a751bd35.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/SetSki-V1/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.960c4815.js",
+    "static/js/2.a751bd35.chunk.js",
+    "static/css/main.ab7136cd.chunk.css",
+    "static/js/main.51e1e88c.chunk.js"
+  ]
+}
