@@ -31,9 +31,8 @@ export default function FormTable(props) {
   const [styleList, setStyleList] = useContext(StyleContext);
   const [newDetails, setnewDetails] = useState(props.details);
   useEffect(() => {
-    setnewDetails(props.details)
-    
-  }, [])
+    setnewDetails(props.details);
+  }, []);
   const handleLocalStorage = (message) => {
     localStorage.setItem("message", message);
     // sets the value of "message" in localStorage to be "saved in browser storage"
@@ -52,6 +51,7 @@ export default function FormTable(props) {
       (record) => record.title !== newValue
     );
     await setStyleList(() => {
+      return [...filteredList];
     });
     await setOptionsOpen(false);
   };
@@ -95,7 +95,6 @@ export default function FormTable(props) {
                   handleEditRecord(props.label);
                   setEdit(false);
                   setnewDetails(props.details);
-
                 }}
               >
                 <ApproveIcon />
@@ -132,11 +131,12 @@ export default function FormTable(props) {
         {optionsOpen ? (
           <>
             <TableCell align="right">
-              <IconButton onClick={() => {
+              <IconButton
+                onClick={() => {
                   setnewDetails(props.details);
-                  setEdit(true)
-                }
-            }>
+                  setEdit(true);
+                }}
+              >
                 <CreateIcon />
               </IconButton>
               <IconButton onClick={() => handleRemoveValue(props.label)}>

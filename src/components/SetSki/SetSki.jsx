@@ -13,8 +13,8 @@ import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import FormRow from "./FormRow";
-import FeatureSearch from './FeatureSearch'
-import { StyleContext } from "./StyleContext"
+import FeatureSearch from "./FeatureSearch";
+import { StyleContext } from "./StyleContext";
 
 const useStyles = makeStyles({
   modal: {
@@ -34,7 +34,7 @@ const Stuff = [
     title: "blah",
     heading: "Hi",
     subHeading: "A greeting",
-  }
+  },
 ];
 
 export default function MainView() {
@@ -78,13 +78,14 @@ export default function MainView() {
                 <FeatureSearch />
                 <TableContainer component={Paper}>
                   <Table aria-label="simple table">
-
                     <TableHead>
-                        {
-                            styleList.map((d,i) => (
-                                <FormRow  label={d.title} details={d.details} edit={false} />
-                            ))
-                        }
+                      {styleList.map((d, i) => (
+                        <FormRow
+                          label={d.title}
+                          details={d.details}
+                          edit={false}
+                        />
+                      ))}
                     </TableHead>
                   </Table>
                 </TableContainer>

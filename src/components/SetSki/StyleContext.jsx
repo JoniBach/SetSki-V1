@@ -14,8 +14,13 @@ export const StyleProvider = (props) => {
 };
 
 export const GetStyle = (newValue) => {
-  const [styleList, setStyleList] = React.useContext(StyleContext)
-  const filteredList = styleList.filter((record) => record.title === newValue);
-  const filteredDefaultList = StyleList.filter((record) => record.title === newValue);
+  const [styleList, setStyleList] = React.useContext(StyleContext);
+  const filteredDefaultList = StyleList.filter(
+    (record) => record.title === newValue
+  );
+  const filteredList = styleList
+    ? styleList.filter((record) => record.title === newValue)
+    : filteredDefaultList;
   return !filteredList[0] ? filteredDefaultList[0] : filteredList[0];
+  //   return filteredDefaultList
 };
