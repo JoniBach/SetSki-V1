@@ -17,6 +17,10 @@ function App() {
         // This is green.A700 as hex.
         main: GetStyle("Secondary Color").details,
       },
+      background: {
+        default: GetStyle("Background Default Color").details,
+        paper: GetStyle("Background Paper Color").details,
+      },
       type: GetStyle("Theme").details,
     },
     typography: {
